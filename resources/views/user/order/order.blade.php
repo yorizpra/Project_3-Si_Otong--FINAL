@@ -25,7 +25,7 @@
                 <th class="product-thumbnail">Invoice</th>
                 <th class="product-name">Total</th>
                 <th class="product-price">Status</th>
-                <th class="product-quantity" width="20%">Aksi</th>
+                <th class="product-quantity" width="20%">Cek</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@
     <div class="container">
     <div class="row mb-3">
         <div class="col-md-12">
-            <h2 class="btn btn-warning text-white">Sedang Dalam Proses</h2>
+            <h2 class="btn btn-warning text-white">Riwayat Transaksi</h2>
         </div>
     </div>
     <div class="row mb-5">
@@ -63,7 +63,7 @@
                 <th class="product-thumbnail">Invoice</th>
                 <th class="product-name">Total</th>
                 <th class="product-price">Status</th>
-                <th class="product-quantity" width="20%">Aksi</th>
+                <th class="product-quantity" width="20%">Cek</th>
                 </tr>
             </thead>
             <tbody>
@@ -88,7 +88,7 @@
         
     </div>
 
-    <div class="container">
+    <!-- <div class="container">
     <div class="row mb-3">
         <div class="col-md-12">
             <h2 class="btn btn-warning text-white">Riwayat Pesanan Anda</h2>
@@ -124,5 +124,5 @@
     </div>
 
     </div>
-</div>
+</div> -->
 @endsection

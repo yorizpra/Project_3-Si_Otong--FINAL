@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Toko Pakaian Online </title>
+    <title>Si-Otong </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -37,11 +37,15 @@
               </form>
             </div>
 
-            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+            <div class="logo pull-left">
+              <a href="{{ route('home') }}"><img src="{{ asset('eshopper') }}/images/home/logo.png" alt="" /></a>
+            </div>
+
+            <!-- <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
                 <a href="index.html" class="js-logo-clone">Toko Pakaian Online</a>
               </div>
-            </div>
+            </div> -->
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
             <div class="top-right links"> 

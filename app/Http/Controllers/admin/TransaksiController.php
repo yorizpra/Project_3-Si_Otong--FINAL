@@ -15,7 +15,7 @@ class TransaksiController extends Controller
                     ->join('status_order','status_order.id','=','order.status_order_id')
                     ->join('users','users.id','=','order.user_id')
                     ->select('order.*','status_order.name','users.name as nama_pemesan')
-                    ->where('order.status_order_id',1)
+                    
                     ->get();
         $data = array(
             'orderbaru' => $order

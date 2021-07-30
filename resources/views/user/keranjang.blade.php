@@ -1,9 +1,34 @@
 @extends('user.app')
 @section('content')
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Cart | E-Shopper</title>
+    <link href="{{ asset('eshopper') }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('eshopper') }}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('eshopper') }}/css/prettyPhoto.css" rel="stylesheet">
+    <link href="{{ asset('eshopper') }}/css/price-range.css" rel="stylesheet">
+    <link href="{{ asset('eshopper') }}/css/animate.css" rel="stylesheet">
+	<link href="{{ asset('eshopper') }}/css/main.css" rel="stylesheet">
+	<link href="{{ asset('eshopper') }}/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="{{ asset('eshopper') }}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('eshopper') }}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('eshopper') }}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('eshopper') }}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('eshopper') }}/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+
 <div class="bg-light py-3">
     <div class="container">
     <div class="row">
-        <div class="col-md-12 mb-0"><a href="{{ route('home') }}">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+        <div class="col-md-12 mb-0"><a href="{{ route('home') }}">Beranda</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Keranjang</strong></div>
     </div>
     </div>
 </div>
@@ -13,51 +38,77 @@
     <div class="row mb-5">
         <form class="col-md-12" method="post" action="{{ route('user.keranjang.update') }}">
         @csrf
-            <table class="table table-bordered">
-            <thead>
-                <tr>
-                <th class="product-thumbnail">Gambar</th>
-                <th class="product-name">Produk</th>
-                <th class="product-price">Harga</th>
-                <th class="product-quantity">Jumlah</th>
-                <th class="product-total">Total</th>
-                <th class="product-remove">Hapus</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    
-                <?php $subtotal=0; foreach($keranjangs as $keranjang): ?>
-                <td class="product-thumbnail">
-                    <img src="{{ asset('storage/'.$keranjang->image) }}" alt="Image" class="img-fluid" width="150">
-                </td>
-                <td class="product-name">
-                    <h2 class="h5 text-black">{{ $keranjang->nama_produk }}</h2>
-                </td>
-                <td>Rp. {{ number_format($keranjang->price,2,',','.') }} </td>
-                <td>
-                    <div class="input-group mb-3" style="max-width: 120px;">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                    </div>
-                    <input type="hidden" name="id[]" value="{{ $keranjang->id }}">
-                    <input type="text" name="qty[]" class="form-control text-center" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="{{ $keranjang->qty }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                    </div>
-                    </div>
 
-                </td>
-                <?php
-                    $total = $keranjang->price * $keranjang->qty;
-                    $subtotal = $subtotal + $total;
-                ?>
-                <td>Rp. {{ number_format($total,2,',','.') }}</td>
-                <td><a href="{{ route('user.keranjang.delete',['id' => $keranjang->id]) }}" class="btn btn-primary btn-sm">X</a></td>
-                </tr>
-                <?php endforeach;?>
-            </tbody>
-            </table>
+
+
+
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+                            <?php $subtotal=0; foreach($keranjangs as $keranjang): ?>
+							<td class="cart_product">
+								<a href=""><img src="{{ asset('storage/'.$keranjang->image) }}" alt="Image" class="img-fluid" width="150"></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{ $keranjang->nama_produk }}</a></h4>
+							</td>
+							<td class="cart_price">
+								<p>Rp. {{ number_format($keranjang->price,2,',','.') }} </p>
+							</td>
+                            <td>
+                                <div class="input-group mb-3" style="max-width: 35px;">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                                <input type="hidden" name="id[]" value="{{ $keranjang->id }}">
+                                <input type="text" name="qty[]" class="form-control text-center" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="{{ $keranjang->qty }}">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                </div>
+                            </td>
+                            <?php
+                                $total = $keranjang->price * $keranjang->qty;
+                                $subtotal = $subtotal + $total;
+                            ?>
+							<td class="cart_total">
+								<p class="cart_total_price">Rp. {{ number_format($total,2,',','.') }}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="{{ route('user.keranjang.delete',['id' => $keranjang->id]) }}"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                        <?php endforeach;?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+
+
+            
         
     </div>
 
